@@ -148,6 +148,16 @@ Route::middleware('auth')->group(function () {
     
 
     Route::post('/sejarah/store', [SejarahController::class, 'store'])->name('sejarah.store');
+    Route::resource('sejarah', SejarahController::class, [
+        'names' => [
+            'index' => 'sejarah.index',
+            'create' => 'sejarah.create',
+            'store' => 'sejarah.store',
+            'edit' => 'sejarah.edit',
+            'update' => 'sejarah.update',
+            'destroy' => 'sejarah.destroy',
+        ],
+    ]);
 
     Route::get('/kuliner/create', function () {
         return view('informasi_kuliner'); // Sesuaikan dengan nama view Anda

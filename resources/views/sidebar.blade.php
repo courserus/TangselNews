@@ -85,7 +85,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('sejarah.tangsel') }}">
+                                        <a href="{{ route('sejarah.index') }}">
                                             <span class="sub-item">Sejarah Tangsel</span>
                                         </a>
                                     </li>
