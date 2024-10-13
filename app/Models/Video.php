@@ -9,11 +9,11 @@ class Video extends Model
 {
     use HasFactory;
 
-    protected $table = 'videos'; // Nama tabel yang digunakan
-
+    // Sesuaikan dengan field di tabel 'videos'
     protected $fillable = [
         'title',
-        'url',
+        'creator',
+        'link',
         'description',
     ];
 }
