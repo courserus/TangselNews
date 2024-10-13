@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Saran extends Model
 {
     use HasFactory;
 
-    // Sesuaikan dengan field di tabel 'videos'
+    protected $table = 'saran';
+
     protected $fillable = [
-        'title',
-        'creator',
-        'link',
-        'description',
+        'nama',
+        'email',
+        'isi',
     ];
 }

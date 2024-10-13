@@ -36,8 +36,6 @@
                 <a href="{{ route('sejarah.create') }}" class="btn btn-primary">Tambah Sejarah</a>
             </div>
 
-            <h4 class="mt-5">Daftar Visi & Misi</h4>
-
             <table class="table table-bordered">
                 <thead>
                     <tr>
