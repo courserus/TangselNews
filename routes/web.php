@@ -21,6 +21,9 @@ use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\PejabatController;
+use App\Http\Controllers\SkpdController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\GalleryController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BeritaController;
@@ -56,13 +59,26 @@ Route::middleware('auth')->group(function () {
     Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update'); // Update berita
     Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy'); // Hapus berita
 
-
-
     Route::get('/SKPD', [InformasiPublikController::class, 'SKPD'])->name('SKPD');
     Route::get('/list_SKPD', [InformasiPublikController::class, 'list_SKPD'])->name('list_SKPD');
     Route::get('/wisata', [InformasiPublikController::class, 'wisata'])->name('wisata');
     Route::get('/kuliner', [InformasiPublikController::class, 'kuliner'])->name('kuliner');
     Route::get('/nama_pejabat', [InformasiPublikController::class, 'nama_pejabat'])->name('nama.pejabat');
+
+
+    Route::resource('skpd', SkpdController::class, [
+        'names' => [
+            'index' => 'skpd.index',
+            'create' => 'skpd.create',
+            'store' => 'skpd.store',
+            'edit' => 'skpd.edit',
+            'update' => 'skpd.update',
+            'destroy' => 'skpd.destroy',
+            'show' => 'skpd.show', // Tambahkan ini
+        ],
+    ]);
+    
+
 
     Route::get('/tambah_menu', [EvenDanSaranController::class, 'tambah_Menu'])->name('tambah_menu');
     Route::post('/menu/store', [EvenDanSaranController::class, 'storeMenu'])->name('menu.store');
@@ -74,6 +90,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/upload/video', [VideoController::class, 'store'])->name('video.store');
 
     Route::get('/master_user', [MasterUserController::class, 'master_user'])->name('master_user');
+    Route::get('master-user', [MasterUserController::class, 'index'])->name('master_user.index');
+    Route::get('master-user/create', [MasterUserController::class, 'create'])->name('master_user.create');
+    Route::post('master-user', [MasterUserController::class, 'store'])->name('master_user.store');
+    Route::get('master-user/{user}', [MasterUserController::class, 'show'])->name('master_user.show');
+    Route::get('master-user/{user}/edit', [MasterUserController::class, 'edit'])->name('master_user.edit');
+    Route::put('master-user/{user}', [MasterUserController::class, 'update'])->name('master_user.update');
+    Route::delete('master-user/{user}', [MasterUserController::class, 'destroy'])->name('master_user.destroy');
 
     Route::get('/album_dan_gallery', [AlbumDanGalleryController::class, 'album_dan_gallery'])->name('album_dan_gallery');
 
@@ -159,11 +182,24 @@ Route::middleware('auth')->group(function () {
         ],
     ]);
 
+    Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
+    Route::get('/album/create', [AlbumController::class, 'create'])->name('album.create');
+    Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
+    Route::get('/album/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');
+    Route::put('/album/{id}', [AlbumController::class, 'update'])->name('album.update');
+    Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+
+    Route::resource('gallery', GalleryController::class)->except(['edit', 'update', 'show']);
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+
+    Route::get('/kuliner', [InformasiPublikController::class, 'kuliner'])->name('kuliner');
     Route::get('/kuliner/create', function () {
         return view('informasi_kuliner'); // Sesuaikan dengan nama view Anda
     })->name('kuliner.create');
     Route::post('/kuliner/store', [KulinerController::class, 'store'])->name('kuliner.store');
 
+    Route::get('/wisata', [InformasiPublikController::class, 'wisata'])->name('wisata');
     Route::get('/wisata/create', function () {
         return view('informasi_wisata'); // Sesuaikan dengan nama view Anda
     })->name('wisata.create');
