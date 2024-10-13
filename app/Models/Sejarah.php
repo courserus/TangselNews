@@ -9,7 +9,10 @@ class Sejarah extends Model
 {
     use HasFactory;
 
-    protected $table = 'sejarah'; // Pastikan nama tabel sesuai
+ wildan
+
+    protected $table = 'sejarahs'; // Pastikan nama tabel sesuai
+ master
 
     protected $fillable = [
         'konten',

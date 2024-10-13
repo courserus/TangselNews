@@ -32,7 +32,9 @@
                 </div>
             @endif
 
-            <a href="{{ route('sejarah.create') }}" class="btn btn-primary mb-3">Tambah Sejarah</a>
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{ route('sejarah.create') }}" class="btn btn-primary">Tambah Sejarah</a>
+            </div>
 
             <table class="table table-bordered">
                 <thead>
