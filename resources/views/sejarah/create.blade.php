@@ -4,7 +4,7 @@
     <div class="container">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3">Tambah Sejarah Tangerang Selatan</h3>
+                <h3 class="fw-bold mb-3">Sejarah Tangerang Selatan</h3> <!-- Sesuaikan sesuai kebutuhan -->
                 <ul class="breadcrumbs mb-3">
                     <li class="nav-home">
                         <a href="{{ route('sejarah.index') }}">
@@ -21,12 +21,16 @@
                         <i class="icon-arrow-right"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Tambah Sejarah</a>
+                        <a href="#">Sejarah Tangerang Selatan</a> <!-- Sesuaikan sesuai kebutuhan -->
                     </li>
                 </ul>
             </div>
 
-            @if ($errors->any())
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> Terdapat masalah dengan input Anda.<br><br>
                     <ul>

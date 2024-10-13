@@ -1,7 +1,34 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{
+    ProfileController,
+    KontenProfilController,
+    InformasiPublikController,
+    EvenDanSaranController,
+    MenuController,
+    VideoController,
+    MasterUserController,
+    AlbumDanGalleryController,
+    Auth\LoginController,
+    MasterBeritaController,
+    ContactController,
+    ImageUploadController,
+    VisiMisiController,
+    WalikotaController,
+    WakilWalikotaController,
+    SejarahController,
+    KulinerController,
+    WisataController,
+    PejabatController,
+    SkpdController,
+    TambahMenuController,
+    SaranController,
+    AlbumController,
+    GalleryController,
+    BeritaController
+};
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 
 use App\Http\Controllers\KontenProfilController;
 use App\Http\Controllers\InformasiPublikController;
@@ -25,8 +52,9 @@ use App\Http\Controllers\SkpdController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GalleryController;
 
+=======
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\BeritaController;
 
 Auth::routes();
 
@@ -39,11 +67,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Profile routes
+    Route::resource('profile', ProfileController::class)->except(['index', 'create', 'show']);
+    
+    // Custom logout route
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    // Konten Profil Routes
     Route::get('/profil_walikota', [KontenProfilController::class, 'profil_walikota'])->name('profil.walikota');
     Route::get('/profil_wakil_walikota', [KontenProfilController::class, 'profil_wakil_walikota'])->name('profil.wakil_walikota');
     Route::get('/lambang_daerah', [KontenProfilController::class, 'lambang_daerah'])->name('lambang.daerah');
@@ -52,13 +82,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/kontak', [KontenProfilController::class, 'kontak'])->name('kontak');
 
     // Berita Routes
-    Route::get('/berita', [BeritaController::class, 'index'])->name('berita'); // Halaman daftar berita
-    Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create'); // Form untuk tambah berita
-    Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store'); // Simpan berita baru
-    Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit'); // Form edit berita
-    Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update'); // Update berita
-    Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy'); // Hapus berita
+    Route::resource('berita', BeritaController::class)->except(['show']);
 
+<<<<<<< HEAD
     Route::get('/SKPD', [InformasiPublikController::class, 'SKPD'])->name('SKPD');
     Route::get('/list_SKPD', [InformasiPublikController::class, 'list_SKPD'])->name('list_SKPD');
     Route::get('/wisata', [InformasiPublikController::class, 'wisata'])->name('wisata');
@@ -203,9 +229,50 @@ Route::middleware('auth')->group(function () {
     Route::get('/wisata/create', function () {
         return view('informasi_wisata'); // Sesuaikan dengan nama view Anda
     })->name('wisata.create');
+=======
+    // SKPD Routes
+    Route::resource('skpd', SkpdController::class);
+
+    // Wisata & Kuliner Routes
+    Route::get('/wisata', [InformasiPublikController::class, 'wisata'])->name('wisata');
+    Route::get('/kuliner', [InformasiPublikController::class, 'kuliner'])->name('kuliner');
+    Route::post('/kuliner/store', [KulinerController::class, 'store'])->name('kuliner.store');
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
     Route::post('/wisata/store', [WisataController::class, 'store'])->name('wisata.store');
 
-    Route::post('/pejabat/store', [PejabatController::class, 'store'])->name('pejabat.store');
+    // Saran Routes
+    Route::resource('saran', SaranController::class)->except(['show']);
+
+    // Tambah Menu Routes
+    Route::prefix('tambah_menu')->group(function () {
+        Route::get('/', [TambahMenuController::class, 'index'])->name('tambah_menu.index');
+        Route::get('/create', [TambahMenuController::class, 'create'])->name('tambah_menu.create');
+        Route::post('/store', [TambahMenuController::class, 'store'])->name('tambah_menu.store');
+        Route::get('/{id}/edit', [TambahMenuController::class, 'edit'])->name('tambah_menu.edit');
+        Route::put('/{id}', [TambahMenuController::class, 'update'])->name('tambah_menu.update');
+        Route::delete('/{id}', [TambahMenuController::class, 'destroy'])->name('tambah_menu.destroy');
+    });
+
+    // Album and Gallery Routes
+    Route::resource('album', AlbumController::class);
+    Route::resource('gallery', GalleryController::class)->except(['edit', 'update', 'show']);
+
+    // Master User and Contacts Routes
+    Route::resource('master_user', MasterUserController::class)->except(['show']);
+    Route::resource('contacts', ContactController::class)->except(['show']);
+
+    // Video Upload Routes
+    Route::get('/video/upload', [VideoController::class, 'index'])->name('video.upload');
+    Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
+
+    // Sejarah, Visi & Misi, Walikota, Wakil Walikota Routes
+    Route::resource('sejarah', SejarahController::class)->except(['show']);
+    Route::resource('visi-misi', VisiMisiController::class)->except(['show']);
+    Route::resource('walikota', WalikotaController::class)->except(['show']);
+    Route::resource('wakil_walikota', WakilWalikotaController::class);
+
+    // Image Upload Routes
+    Route::resource('upload-image', ImageUploadController::class)->except(['show']);
 });
 
 require __DIR__ . '/auth.php';

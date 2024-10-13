@@ -5,6 +5,7 @@
         <div class="page-inner">
             <div class="page-header">
                 <h3 class="fw-bold mb-3">Upload Video</h3>
+<<<<<<< HEAD
                 <ul class="breadcrumbs mb-3">
                     <li class="nav-home">
                         <a href="#">
@@ -27,6 +28,12 @@
             </div>
 
             <!-- Form Upload Video -->
+=======
+                <!-- Breadcrumbs -->
+            </div>
+
+            <!-- Pesan Sukses dan Error -->
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
@@ -34,12 +41,31 @@
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
+<<<<<<< HEAD
+=======
+            <!-- Error Validasi -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- Formulir Upload Video -->
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
             <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Judul Video</label>
                     <input type="text" class="form-control" id="title" name="title"
+<<<<<<< HEAD
                         placeholder="Masukkan Judul Video" required>
+=======
+                        placeholder="Masukkan Judul Video" value="{{ old('title') }}" required>
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
                 </div>
 
                 <div class="form-group">
@@ -50,7 +76,11 @@
                 <div class="form-group">
                     <label for="description">Deskripsi Video</label>
                     <textarea class="form-control" id="description" name="description" rows="5"
+<<<<<<< HEAD
                         placeholder="Masukkan deskripsi video..." required></textarea>
+=======
+                        placeholder="Masukkan deskripsi video..." required>{{ old('description') }}</textarea>
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
                 </div>
 
                 <div class="d-flex justify-content-center">
@@ -62,6 +92,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <footer class="footer">
         <div class="container-fluid d-flex justify-content-center">
             <nav class="pull-left">
@@ -79,4 +110,7 @@
             </div>
         </div>
     </footer>
+=======
+    <!-- Footer -->
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
 @endsection

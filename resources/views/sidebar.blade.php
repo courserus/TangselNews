@@ -131,11 +131,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="back-end/forms/forms.html">
-                                            <span class="sub-item">List SKPD</span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="{{ route('wisata') }}">
                                             <span class="sub-item">Wisata</span>
                                         </a>
@@ -162,12 +157,16 @@
                             <div class="collapse" id="tables">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="{{ route('tambah_menu') }}">
+                                        <a href="{{ route('tambah_menu.index') }}">
                                             <span class="sub-item">Tambah Menu</span>
                                         </a>
                                     </li>
                                     <li>
+<<<<<<< HEAD
                                         <a href="{{ route('saran') }}">
+=======
+                                        <a href="{{ route('saran.index') }}">
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
                                             <span class="sub-item">Saran</span>
                                         </a>
                                     </li>
@@ -198,6 +197,7 @@
                                 </a>
     
                             </li>
+<<<<<<< HEAD
                         <li class="nav-item">
                             <li class="nav-item">
                                 <a data-bs-toggle="collapse" href="#AlbumGalleryMenu" aria-expanded="false"
@@ -223,6 +223,33 @@
                             </li>
     
                             </li>
+=======
+                            <li class="nav-item">
+                                <li class="nav-item">
+                                    <a data-bs-toggle="collapse" href="#AlbumGalleryMenu" aria-expanded="false"
+                                        aria-controls="AlbumGalleryMenu">
+                                        <i class="fa fa-camera-retro"></i>
+                                        <p>Album & Gallery</p>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="collapse" id="AlbumGalleryMenu">
+                                        <ul class="nav nav-collapse">
+                                            <li>
+                                                <a href="{{ route('album.index') }}">
+                                                    <span class="sub-item">Album</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('gallery.index') }}">
+                                                    <span class="sub-item">Gallery</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+        
+                                </li>
+>>>>>>> d22dad2979bfd7a5f1bc12b391be6771ac9aea46
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#Album&Gallery">
                                 <i class="fa fa-user-secret"></i>
